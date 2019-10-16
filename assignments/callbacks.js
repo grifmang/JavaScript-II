@@ -1,6 +1,6 @@
 // Create a higher order function and invoke the callback function to test your work. You have been provided an example of a problem and a solution to see how this works with our items array.  Study both the problem and the solution to figure out the rest of the problems.
 
-const items = ['Pencil', 'Notebook', 'yo-yo', 'Gum'];
+const items = ['Pencil', 'Notebook', 'yo-yo', 'Gum', 'Gum'];
 
 /* 
 
@@ -38,27 +38,42 @@ const items = ['Pencil', 'Notebook', 'yo-yo', 'Gum'];
   console.log(test2); // "this Pencil is worth a million dollars!"
 */
 
-
 function getLength(arr, cb) {
   // getLength passes the length of the array into the callback.
+  return cb(arr);
 }
+const the_len = (arr) => { return arr.length; }
+console.log(getLength(items, the_len));
 
 function last(arr, cb) {
   // last passes the last item of the array into the callback.
+  return cb(arr);
 }
+const last_item = (arr) => { return arr[arr.length - 1]; }
+//const last_item = (arr) => { arr.slice(-1)[0]; }
+console.log(last(items, last_item));
 
 function sumNums(x, y, cb) {
   // sumNums adds two numbers (x, y) and passes the result to the callback.
+  return cb(x,y);
 }
+const sum = (x,y) => { return x + y; }
+console.log(sumNums(10, 5, sum));
 
 function multiplyNums(x, y, cb) {
   // multiplyNums multiplies two numbers and passes the result to the callback.
+  return cb(x, y);
 }
+const mult = (x,y) => { return x * y; }
+console.log(multiplyNums(3, 5, mult));
 
-function contains(item, list, cb) {
+function contains(element, arr, cb) {
   // contains checks if an item is present inside of the given array/list.
   // Pass true to the callback if it is, otherwise pass false.
+  return cb(element, arr);
 }
+const is_it_in = (item, list) => { return list.includes(item); }
+console.log(contains('Gum', items, is_it_in));
 
 /* STRETCH PROBLEM */
 
@@ -66,4 +81,18 @@ function removeDuplicates(array, cb) {
   // removeDuplicates removes all duplicate values from the given array.
   // Pass the duplicate free array to the callback function.
   // Do not mutate the original array.
+  return cb(array);
 }
+
+const remove_dupes = (arr) => {
+  let newArray = [];
+  for (let i=0; i<arr.length; i++) {
+    if (newArray.includes(arr[i])) {
+      continue;
+    } else {
+      newArray.push(arr[i]);
+    }
+  };
+  return newArray;
+}
+console.log(removeDuplicates(items, remove_dupes));

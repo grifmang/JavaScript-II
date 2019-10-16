@@ -58,28 +58,58 @@ const runners = [
 // ==== Challenge 1: Use .forEach() ====
 // The event director needs both the first and last names of each runner for their running bibs. Combine both the first and last names and populate a new array called `fullNames`. This array will contain just strings.
 let fullNames = [];
+runners.forEach(function(currentArray) {
+  fullNames.push(`${currentArray.first_name} ${currentArray.last_name}`);
+})
 console.log(fullNames);
 
 // ==== Challenge 2: Use .map() ====
 // The event director needs to have all the runners' first names in uppercase because the director BECAME DRUNK WITH POWER. Populate an array called `firstNamesAllCaps`. This array will contain just strings.
-let firstNamesAllCaps = [];
+let firstNamesAllCaps = runners.map(function(currentArray) {
+  return currentArray.first_name.toUpperCase();
+})
 console.log(firstNamesAllCaps);
 
 // ==== Challenge 3: Use .filter() ====
 // The large shirts won't be available for the event due to an ordering issue. We need a filtered version of the runners array, containing only those runners with large sized shirts so they can choose a different size. This will be an array of objects.
 let runnersLargeSizeShirt = [];
-console.log(runnersLargeSizeShirt);
+console.log(runners.filter(function(currentArray) {
+  return currentArray.shirt_size === 'L';
+}));
 
 // ==== Challenge 4: Use .reduce() ====
 // The donations need to be tallied up and reported for tax purposes. Add up all the donations and save the total into a ticketPriceTotal variable.
 let ticketPriceTotal = 0;
-console.log(ticketPriceTotal);
+console.log(runners.reduce(function (acc, currentArray) {
+  return acc + currentArray.donation;
+}, ticketPriceTotal));
+// console.log(sum);
 
 // ==== Challenge 5: Be Creative ====
 // Now that you have used .forEach(), .map(), .filter(), and .reduce().  I want you to think of potential problems you could solve given the data set and the 5k fun run theme.  Try to create and then solve 3 unique problems using one or many of the array methods listed above.
 
 // Problem 1
+// We're sending an email to all donors to thank them. We need all their email addresses.
+let email_array = [];
+runners.forEach(function(currentArray) {
+  email_array.push(currentArray.email);
+});
+console.log(email_array);
 
 // Problem 2
+// We're going to announce the special donors who made a donation over 250. We need a list of them.
+console.log(runners.filter(function(currentArray) {
+  return currentArray.donation > 250;
+}));
+
 
 // Problem 3
+// A special donor wants to match 10% of each donation.
+let tenPercentDonation = 0;
+const tenPercent = runners.map(function(currentValue) {
+    return currentValue.donation / 10;
+  })
+
+console.log(tenPercent.reduce(function (acc, currentValue) {
+  return acc + tenPercentDonation;
+}));
