@@ -30,11 +30,11 @@ const counterMaker = () => {
   function counter() {
     return count += 1;
   }
-  return counter();
+  return counter;
 }
 const myCounter = counterMaker();
-console.log(myCounter); // Not sure why this doesn't increment.
-console.log(myCounter);
+console.log(myCounter()); // Not sure why this doesn't increment.
+console.log(myCounter());
 // Example usage: const myCounter = counterMaker();
 // myCounter(); // 1
 // myCounter(); // 2
