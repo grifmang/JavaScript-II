@@ -4,6 +4,16 @@
 // that manipulates variables defined in the outer scope.
 // The outer scope can be a parent function, or the top level of the script.
 
+let i = 'I am';
+let j = 'learning closures.';
+
+
+function myClosureFunction() {
+  console.log(`${i} loving ${j}`);
+}
+
+myClosureFunction();
+
 
 /* STRETCH PROBLEMS, Do not attempt until you have completed all previous tasks for today's project files */
 
@@ -15,8 +25,16 @@ const counterMaker = () => {
   // 2- Declare a function `counter`. It should increment and return `count`.
   //      NOTE: This `counter` function, being nested inside `counterMaker`,
   //      "closes over" the `count` variable. It can "see" it in the parent scope!
-  // 3- Return the `counter` function.
-};
+  // 3- Return the `counter` function.]
+  let count = 0;
+  function counter() {
+    return count += 1;
+  }
+  return counter();
+}
+const myCounter = counterMaker();
+console.log(myCounter); // Not sure why this doesn't increment.
+console.log(myCounter);
 // Example usage: const myCounter = counterMaker();
 // myCounter(); // 1
 // myCounter(); // 2

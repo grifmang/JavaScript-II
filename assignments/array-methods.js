@@ -65,9 +65,8 @@ console.log(fullNames);
 
 // ==== Challenge 2: Use .map() ====
 // The event director needs to have all the runners' first names in uppercase because the director BECAME DRUNK WITH POWER. Populate an array called `firstNamesAllCaps`. This array will contain just strings.
-let firstNamesAllCaps = [];
-runners.forEach(function(currentArray) {
-  firstNamesAllCaps.push(currentArray.first_name.toUpperCase());
+let firstNamesAllCaps = runners.map(function(currentArray) {
+  return currentArray.first_name.toUpperCase();
 })
 console.log(firstNamesAllCaps);
 
@@ -90,7 +89,27 @@ console.log(runners.reduce(function (acc, currentArray) {
 // Now that you have used .forEach(), .map(), .filter(), and .reduce().  I want you to think of potential problems you could solve given the data set and the 5k fun run theme.  Try to create and then solve 3 unique problems using one or many of the array methods listed above.
 
 // Problem 1
+// We're sending an email to all donors to thank them. We need all their email addresses.
+let email_array = [];
+runners.forEach(function(currentArray) {
+  email_array.push(currentArray.email);
+});
+console.log(email_array);
 
 // Problem 2
+// We're going to announce the special donors who made a donation over 250. We need a list of them.
+console.log(runners.filter(function(currentArray) {
+  return currentArray.donation > 250;
+}));
+
 
 // Problem 3
+// A special donor wants to match 10% of each donation.
+let tenPercentDonation = 0;
+const tenPercent = runners.map(function(currentValue) {
+    return currentValue.donation / 10;
+  })
+
+console.log(tenPercent.reduce(function (acc, currentValue) {
+  return acc + tenPercentDonation;
+}));
